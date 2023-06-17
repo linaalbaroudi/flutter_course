@@ -1,3 +1,9 @@
-# meals_app
+# Flutter training app
 
-A project for training
+This project combines apps I have developed while training on Flutter.
+
+## Apps
+- Meals app
+- Personal Quiz app
+- Knowledge Quiz app
+- Roll Dice
