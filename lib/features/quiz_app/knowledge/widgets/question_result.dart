@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../knowledge/models/question.dart';
+
 class QuestionResult extends StatelessWidget {
   const QuestionResult(
       {super.key,
@@ -21,7 +23,7 @@ class QuestionResult extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
         child: Text(
-          '${questionSummary['question']}',
+          '${(questionSummary['question'] as Question).text }',
           style: Theme.of(context)
               .textTheme
               .headlineSmall!

@@ -56,6 +56,7 @@ class _KnowledgeQuizScreenState extends State<KnowledgeQuizScreen> {
         title: Text("Knowledge Quiz "),
       ),
       body: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,

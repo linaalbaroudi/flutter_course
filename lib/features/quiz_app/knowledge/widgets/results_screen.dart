@@ -10,7 +10,7 @@ class ResultsScreen extends StatelessWidget {
   final List<Question> questions;
   final void Function() onRestart;
 
-  List<Map<String, Object>> getSummaryData() {
+  List<Map<String, Object>> get summaryData{
     final List<Map<String, Object>> data = [];
     for (var i = 0; i < answers.length; i++) {
       data.add({
@@ -26,8 +26,7 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final summary = getSummaryData();
-    final numCorrectAnswers = summary.where((element) => element['isCorrect'] as bool).length;
+    final numCorrectAnswers = summaryData.where((element) => element['isCorrect'] as bool).length;
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -49,11 +48,11 @@ class ResultsScreen extends StatelessWidget {
           Expanded(
             flex: 4,
             child: ListView.builder(
-              itemCount: getSummaryData().length,
+              itemCount: summaryData.length,
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: QuestionResult(
-                  questionSummary: summary[index],
+                  questionSummary: summaryData[index],
                 ),
               ),
             ),

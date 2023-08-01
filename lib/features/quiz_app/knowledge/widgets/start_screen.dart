@@ -39,7 +39,7 @@ class StartScreen extends StatelessWidget {
               children: [
                 Icon(Icons.play_arrow),
                 Padding(
-                  padding: const EdgeInsets.only(top: 7.0, bottom: 4, left: 8, right: 4),
+                  padding: const EdgeInsets.only(left: 8, right: 4),
                   child: Text(
                     'Start Quiz',
                   ),

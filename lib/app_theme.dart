@@ -128,7 +128,6 @@ class AppTheme {
     return ThemeData(
         textTheme: lightTextTheme,
         primaryColor: Palette.purple,
-        accentColor: Palette.orange,
         focusColor: Palette.orange,
         brightness: Brightness.light,
         appBarTheme: const AppBarTheme(
@@ -175,7 +174,7 @@ class AppTheme {
               (states) => EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             ),
           ),
-        )
+        ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Palette.orange)
         // checkboxTheme: CheckboxThemeData(
         //   fillColor: MaterialStateColor.resolveWith(
         //         (states) {
