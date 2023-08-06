@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:flutter/services.dart';
 import 'package:meals_app/app_theme.dart';
 import 'package:meals_app/features/categories/views/categories.screen.dart';
 import 'package:meals_app/features/categories/views/category_meals.screen.dart';
@@ -6,6 +7,11 @@ import 'package:meals_app/features/categories/views/meal_datail.screen.dart';
 import 'package:meals_app/tabs.screen.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp
+  // ]).then((value) => runApp(MyApp())
+  // );
   runApp(MyApp());
 }
 
@@ -16,6 +22,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Meals App',
       theme: AppTheme.light(),
+      themeMode: ThemeMode.system,
+      darkTheme: AppTheme.dark(),
       //home: CategoriesScreen(),
       routes:{
         '/' : (ctx) => TabsScreen(),
