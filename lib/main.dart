@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter/services.dart';
 import 'package:meals_app/app_theme.dart';
-import 'package:meals_app/features/categories/views/categories.screen.dart';
-import 'package:meals_app/features/categories/views/category_meals.screen.dart';
-import 'package:meals_app/features/categories/views/meal_datail.screen.dart';
-import 'package:meals_app/tabs.screen.dart';
+import 'package:meals_app/features/todo_app/todo.screen.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -20,23 +16,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Meals App',
+      title: 'Flutter Course',
       theme: AppTheme.light(),
       themeMode: ThemeMode.system,
       darkTheme: AppTheme.dark(),
       //home: CategoriesScreen(),
       routes:{
-        '/' : (ctx) => TabsScreen(),
-        //'/category_meals_screen': (ctx) => CategoryMealsScreen(),
-        CategoryMealsScreen.routeName : (ctx) => CategoryMealsScreen(),
-        MealDetailsScreen.routeName : (ctx) => MealDetailsScreen(),
+        '/' : (ctx) => ToDoApp(),
       },
       onGenerateRoute: (settings){
         print(settings.arguments);
-        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+        return MaterialPageRoute(builder: (ctx) => ToDoApp());
       },
       onUnknownRoute: (settings){
-        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+        return MaterialPageRoute(builder: (ctx) => ToDoApp());
       },
     );
   }

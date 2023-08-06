@@ -17,33 +17,11 @@ class CustomDrawer extends StatelessWidget {
               padding: EdgeInsets.all(20),
               alignment: Alignment.centerLeft,
               child: Text(
-                "Cooking",
+                "Apps",
                 style: Theme.of(context).textTheme.labelLarge,
               ),
             ),
             SizedBox(
-              height: 20,
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.restaurant,
-              ),
-              title: Text("Meals",
-                  style: Theme.of(context).textTheme.headlineMedium),
-              onTap: () {},
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.settings,
-              ),
-              title: Text("Filters",
-                  style: Theme.of(context).textTheme.headlineMedium),
-              onTap: () {},
-            ),
-            const SizedBox(
               height: 20,
             ),
             ListTile(
