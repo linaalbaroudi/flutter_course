@@ -74,14 +74,16 @@ class _ToDoAppState extends State<ToDoApp> {
                 //       to do: _orderedToDos[index]),
                 //   itemCount: _orderedToDos.length,
                 // ),
-                child: Column(
-                  children: [
-                    for (final todo in _orderedToDos)
-                      ToDoItem(
-                        key: ObjectKey(todo), // ValueKey()
-                        todo: todo,
-                      ),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (final todo in _orderedToDos)
+                        ToDoItem(
+                          key: ObjectKey(todo), // ValueKey()
+                          todo: todo,
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ],
