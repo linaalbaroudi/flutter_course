@@ -54,9 +54,16 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       isScrollControlled: true,
       useSafeArea: true,
       context: context,
+      // constraints: BoxConstraints(
+      //     minHeight: MediaQuery.of(context).size.height * 0.9,
+      //     maxHeight:  MediaQuery.of(context).size.height * 0.9
+      // ),
       builder: (ctx) => AddExpenses(onSubmit: _addExpense),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.only(
+          topLeft: const Radius.circular(25.0),
+          topRight: const Radius.circular(25.0),
+        ),
       ),
     );
   }
@@ -74,16 +81,19 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     });
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
-        CustomSnackBar().infoSnackBar(context,  "Expense deleted !", (){
-          setState(() {
-            _expenses.insert(expenseIndex, expense);
-          });
-        }),
+      CustomSnackBar().infoSnackBar(context, "Expense deleted !", () {
+        setState(() {
+          _expenses.insert(expenseIndex, expense);
+        });
+      }),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    print("width = ${size.width}");
+    print("height = ${size.height}");
     return Scaffold(
       appBar: AppBar(
         title: Text("Expense Tracker"),
@@ -94,52 +104,77 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ToggleButtons(
-                      children: [
-                        SizedBox(
-                          width: 105,
-                          child: Text("By Date", textAlign: TextAlign.center),
+          child: size.height <= 400
+              ? Row(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            _getToggelButtons(),
+                            _selectedChart[0]
+                                ? DateChart(latestTransactions: _expenses)
+                                : CategoryChart(expensesList: _expenses)
+                          ],
                         ),
-                        SizedBox(
-                          width: 105,
-                          child: Text("By Category", textAlign: TextAlign.center),
-                        )
-                      ],
-                      onPressed: (int index) {
-                        setState(() {
-                          for (int i = 0; i < _selectedChart.length; i++) {
-                            _selectedChart[i] = i == index;
-                          }
-                        });
-                      },
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      // selectedBorderColor: Colors.red[700],
-                      // selectedColor: Colors.white,
-                      // fillColor: Colors.red[200],
-                      // color: Colors.red[400],
-                      constraints: const BoxConstraints(
-                        minHeight: 40.0,
-                        minWidth: 80.0,
                       ),
-                      isSelected: _selectedChart,
-                  ),
-                ],
-              ),
-              _selectedChart[0] ? DateChart(latestTransactions: _expenses) : CategoryChart(expensesList: _expenses),
-              Expanded(
-                  child: ExpensesList(
-                expenses: _expenses,
-                deleteExpense: _deleteExpense,
-              )),
-            ],
-          ),
+                    ),
+                    VerticalDivider(),
+                    Expanded(
+                      child: ExpensesList(
+                        expenses: _expenses,
+                        deleteExpense: _deleteExpense,
+                      ),
+                    ),
+                  ],
+                )
+              : Column(
+                  children: [
+                    _getToggelButtons(),
+                    _selectedChart[0]
+                        ? DateChart(latestTransactions: _expenses)
+                        : CategoryChart(expensesList: _expenses),
+                    Expanded(
+                        child: ExpensesList(
+                      expenses: _expenses,
+                      deleteExpense: _deleteExpense,
+                    )),
+                  ],
+                ),
         ),
       ),
+    );
+  }
+
+  ToggleButtons _getToggelButtons() {
+    return ToggleButtons(
+      children: [
+        SizedBox(
+          width: 105,
+          child: Text("By Date", textAlign: TextAlign.center),
+        ),
+        SizedBox(
+          width: 105,
+          child: Text("By Category", textAlign: TextAlign.center),
+        )
+      ],
+      onPressed: (int index) {
+        setState(() {
+          for (int i = 0; i < _selectedChart.length; i++) {
+            _selectedChart[i] = i == index;
+          }
+        });
+      },
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
+      // selectedBorderColor: Colors.red[700],
+      // selectedColor: Colors.white,
+      // fillColor: Colors.red[200],
+      // color: Colors.red[400],
+      constraints: const BoxConstraints(
+        minHeight: 40.0,
+        minWidth: 80.0,
+      ),
+      isSelected: _selectedChart,
     );
   }
 }
