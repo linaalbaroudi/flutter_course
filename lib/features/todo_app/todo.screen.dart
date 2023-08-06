@@ -75,6 +75,7 @@ class _ToDoAppState extends State<ToDoApp> {
                 //   itemCount: _orderedToDos.length,
                 // ),
                 child: SingleChildScrollView(
+
                   child: Column(
                     children: [
                       for (final todo in _orderedToDos)
